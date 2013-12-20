@@ -1,7 +1,4 @@
 Ticketee::Application.routes.draw do
-  get "users/new"
-  get "users/create"
-  get "users/show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -14,6 +11,12 @@ Ticketee::Application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  get "users/new"
+  get "users/create"
+  get "users/show"
+
+  get "/signin", to: "sessions#new"
+  post "/signin", to: "sessions#create"
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
