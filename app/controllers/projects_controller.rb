@@ -48,23 +48,14 @@ class ProjectsController < ApplicationController
 
   private 
  
-  def authorize_admin!
-    require_signin!
-
-    unless current_user.admin?
-      flash[:alert] = 'You must be an admin to do that.'
-      redirect_to root_path
+    def project_params
+      params.require(:project).permit(:name, :description)
     end
-  end
-
-  def project_params
-    params.require(:project).permit(:name, :description)
-  end
-  def set_project
-    @project = Project.find( params[:id] )
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "The project you were looking for could not be found."
-    redirect_to projects_path
-  end
+    def set_project
+      @project = Project.find( params[:id] )
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The project you were looking for could not be found."
+      redirect_to projects_path
+    end
 
 end
