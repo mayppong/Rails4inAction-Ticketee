@@ -10,6 +10,9 @@ feature 'Viewing tickets' do
       title: 'Make it shiny!',
       description: 'Gradients! Starbursts! Oh my!'
     )
+    define_permission!( user, "view", textmate_2 )
+    sign_in_as!( user )
+
     ticket.update( user: user )
 
     visit '/'
