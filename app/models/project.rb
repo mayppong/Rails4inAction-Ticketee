@@ -11,4 +11,8 @@ class Project < ActiveRecord::Base
     )
   end   
 
+  scope :for, ->(user) do
+    user.admin? ? Project.all : Project.viewable_by( user )
+  end
+
 end
