@@ -44,6 +44,8 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'cancan', '~> 1.6.10'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'pry'
