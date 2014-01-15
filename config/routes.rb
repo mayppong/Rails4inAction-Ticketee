@@ -19,6 +19,7 @@ Ticketee::Application.routes.draw do
   get "/signin", to: "sessions#new"
   post "/signin", to: "sessions#create"
 
+  delete "/signout", to: "sessions#destroy", as: "signout"
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :projects do
@@ -28,7 +29,11 @@ Ticketee::Application.routes.draw do
   resources :users
   namespace :admin do
     root :to => "base#index"
-    resources :users
+    resources :users do
+      resources :permissions
+
+      put "permissions", to: "permissions#set", as: "set_permissions"
+    end
   end
 
   # Example resource route with options:
