@@ -50,7 +50,7 @@ class TicketsController < ApplicationController
     @ticket = @project.tickets.find( params[:id] )
   end
   def ticket_params
-    params.require( :ticket ).permit( :title, :description )
+    params.require( :ticket ).permit( :title, :description, :asset )
   end
   def authorize_create!
     if !current_user.admin? && cannot?( "create tickets".to_sym, @project )

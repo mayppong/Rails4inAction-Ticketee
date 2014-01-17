@@ -45,6 +45,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # gem 'debugger', group: [:development, :test]
 
 gem 'cancan', '~> 1.6.10'
+gem 'carrierwave'
 
 group :test, :development do
   gem 'rspec-rails'

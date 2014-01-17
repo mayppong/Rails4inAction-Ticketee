@@ -15,6 +15,9 @@
 /log/*.log
 /tmp
 
+# Ignore test files
+public/uploads
+
 # OS generated files #
 ##################
 .DS_Store
