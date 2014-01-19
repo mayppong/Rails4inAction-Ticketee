@@ -17,6 +17,7 @@
 
 # Ignore test files
 public/uploads
+uploads
 
 # OS generated files #
 ##################
