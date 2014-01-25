@@ -54,5 +54,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'headless'
   gem 'factory_girl_rails'
 end

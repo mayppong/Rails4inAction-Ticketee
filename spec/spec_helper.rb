@@ -4,6 +4,13 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+# These are for allowing us to test JavaScript headless.
+require 'capybara/webkit'
+require 'headless'
+Capybara.javascript_driver = :webkit
+headless = Headless.new
+headless.start
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
