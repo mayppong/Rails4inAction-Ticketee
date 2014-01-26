@@ -43,13 +43,13 @@ feature "Creating Tickets" do
     expect( page ).to have_content( 'Description is too short' )
   end 
 
-  scenario 'creating a ticket with an attachment' do
+  scenario 'creating a ticket with an attachment', js: true do
     fill_in 'Title', with: 'Add documentation for blink tag'
     fill_in 'Description', with: 'The blink tag has a speed attribute'
 
     attach_file 'File #1', "spec/fixtures/speed.txt"
+    click_link 'Add another file'
     attach_file 'File #2', "spec/fixtures/spin.txt"
-    attach_file 'File #3', "spec/fixtures/gradient.txt"
 
     click_button 'Create Ticket'
    
@@ -57,7 +57,6 @@ feature "Creating Tickets" do
     within( "#ticket .assets" ) do
       expect( page ).to have_content( 'speed.txt' )
       expect( page ).to have_content( 'spin.txt' )
-      expect( page ).to have_content( 'gradient.txt' )
     end
   end
 
