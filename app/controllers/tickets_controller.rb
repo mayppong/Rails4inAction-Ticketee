@@ -10,7 +10,6 @@ class TicketsController < ApplicationController
     @ticket = @project.tickets.build
     @ticket.assets.build
   end
-
   def create
     @ticket = @project.tickets.build( ticket_params )
     @ticket.user = current_user
@@ -22,9 +21,13 @@ class TicketsController < ApplicationController
       render "new"
     end
   end
-  def edit
+
+  def show
+    @comment = @ticket.comments.build
   end
 
+  def edit
+  end
   def update
     if @ticket.update(ticket_params)
       flash[:notice] = 'Ticket has been updated.'

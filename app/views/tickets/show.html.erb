@@ -21,7 +21,7 @@
           <%= link_to File.basename( asset.asset.path ), asset.asset.url %>
         </p>
         <p>
-          <small><%= number_to_human_size( asset.asset.size) %></small>
+          <small><%= number_to_human_size( asset.asset.size ) %></small>
         </p>
       <% end %>
     </div>
@@ -29,3 +29,12 @@
 
 </div>
 
+<h3>Comments</h3>
+<div id="comments">
+  <% if( @ticket.comments.exists? ) %>
+    <%= render @ticket.comments.select( &:persisted? ) %>
+  <% else %>
+    There are no comments for this ticket.
+  <% end %>
+</div>
+<%= render "comments/form" %>

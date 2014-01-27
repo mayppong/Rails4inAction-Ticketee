@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119074611) do
+ActiveRecord::Schema.define(version: 20140126074005) do
 
   create_table "assets", force: true do |t|
     t.string   "asset"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20140119074611) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "content_type"
+  end
+
+  create_table "comments", force: true do |t|
+    t.text     "text"
+    t.integer  "ticket_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "permissions", force: true do |t|
