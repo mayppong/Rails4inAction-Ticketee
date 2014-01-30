@@ -11,6 +11,8 @@ class CommentsController < ApplicationController
       redirect_to [ @ticket.project, @ticket ]
     else
       flash[:notice] = 'Comment has not been created.'
+
+      @states = State.all
       render template: "tickets/show"
     end
   end
@@ -22,6 +24,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require( :comment ).permit( :text )
+      params.require( :comment ).permit( :text, :state_id )
     end
 end
