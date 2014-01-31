@@ -38,6 +38,9 @@ feature 'Creating comments' do
     within( "#ticket .state" ) do
       page.should have_content( 'Open' )
     end
+    within( "#comments" ) do
+      page.should have_content( 'State: Open' )
+    end
   end
 
 end
