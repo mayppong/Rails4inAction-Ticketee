@@ -32,13 +32,19 @@ Ticketee::Application.routes.draw do
 
   resources :users
   namespace :admin do
+
     root :to => "base#index"
     resources :users do
       resources :permissions
 
       put "permissions", to: "permissions#set", as: "set_permissions"
     end
-    resources :states
+    resources :states do
+      member do
+        get :make_default
+      end
+    end
+
   end
 
   # Example resource route with options:
