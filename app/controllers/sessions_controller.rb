@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = User.where( :name => params[:signin][:name] ).first
+    user = User.where( :email => params[:signin][:email] ).first
 
     if user && user.authenticate( params[:signin][:password] ) 
       session[:user_id] = user.id
