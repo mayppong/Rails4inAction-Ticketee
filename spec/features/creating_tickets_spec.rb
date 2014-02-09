@@ -35,7 +35,7 @@ feature "Creating Tickets" do
   end
 
   scenario 'Description must be longer than 10 characters' do
-    fill_in 'Title', with: 'Non-standards complaiane'
+    fill_in 'Title', with: 'Non-standards compliance'
     fill_in 'Description', with: 'it sucks'
     click_button 'Create Ticket'
 
@@ -57,6 +57,18 @@ feature "Creating Tickets" do
     within( "#ticket .assets" ) do
       expect( page ).to have_content( 'speed.txt' )
       expect( page ).to have_content( 'spin.txt' )
+    end
+  end
+
+  scenario 'creating a ticket with tags' do
+    fill_in 'Title', with: 'Non-standards compliance'
+    fill_in 'Description', with: 'My pages are ugly'
+    fill_in 'Tag names', with: 'browser visual'
+    click_button 'Create Ticket'
+    page.should have_content( 'Ticket has been created.' )
+    within( "#ticket #tags" ) do
+      page.should have_content( "browser" )
+      page.should have_content( "visual" )
     end
   end
 
