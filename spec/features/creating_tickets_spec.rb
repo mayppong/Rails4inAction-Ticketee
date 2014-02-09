@@ -63,7 +63,7 @@ feature "Creating Tickets" do
   scenario 'creating a ticket with tags' do
     fill_in 'Title', with: 'Non-standards compliance'
     fill_in 'Description', with: 'My pages are ugly'
-    fill_in 'Tag names', with: 'browser visual'
+    fill_in 'Tags', with: 'browser visual'
     click_button 'Create Ticket'
     page.should have_content( 'Ticket has been created.' )
     within( "#ticket #tags" ) do

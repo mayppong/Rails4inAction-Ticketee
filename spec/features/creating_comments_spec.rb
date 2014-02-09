@@ -58,6 +58,20 @@ feature 'Creating comments' do
         page.should have_content( 'State: Open' )
       end
     end
+    scenario 'adding a tag to a ticket' do
+      within( "#ticket #tags" ) do
+        page.should_not have_content( "bug" )
+      end
+
+      fill_in 'Text', with: 'Adding the bug tag'
+      fill_in 'Tags', with: 'bug'
+      click_button 'Create Comment'
+
+      page.should have_content( 'Comment has been created.' )
+      within( "#ticket #tags" ) do
+        page.should have_content( "bug" )
+      end
+    end  
   end
 
 end
