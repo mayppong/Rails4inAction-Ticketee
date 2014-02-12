@@ -27,12 +27,16 @@ Ticketee::Application.routes.draw do
   end
   resources :tickets do
     resources :comments
+    resources :tags do
+      member do
+        delete :remove
+      end
+    end
   end
   resources :files
 
   resources :users
   namespace :admin do
-
     root :to => "base#index"
     resources :users do
       resources :permissions
@@ -44,7 +48,6 @@ Ticketee::Application.routes.draw do
         get :make_default
       end
     end
-
   end
 
   # Example resource route with options:

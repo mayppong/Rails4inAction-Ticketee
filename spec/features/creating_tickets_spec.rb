@@ -7,6 +7,7 @@ feature "Creating Tickets" do
 
   before do
     define_permission!( user, "view", project )
+    define_permission!( user, "tag", project )
     define_permission!( user, "create tickets", project )
     sign_in_as!( user )
     
