@@ -23,7 +23,11 @@ Ticketee::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :projects do
-    resources :tickets
+    resources :tickets do
+      collection do
+        get :search
+      end
+    end
   end
   resources :tickets do
     resources :comments
@@ -40,7 +44,6 @@ Ticketee::Application.routes.draw do
     root :to => "base#index"
     resources :users do
       resources :permissions
-
       put "permissions", to: "permissions#set", as: "set_permissions"
     end
     resources :states do
