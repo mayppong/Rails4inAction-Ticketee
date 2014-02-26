@@ -4,6 +4,8 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+require 'email_spec'
+
 # These are for allowing us to test JavaScript headless.
 require 'capybara/webkit'
 require 'headless'
@@ -46,4 +48,8 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.include( EmailSpec::Helpers )
+  config.include( EmailSpec::Matchers )
+
 end

@@ -47,6 +47,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'cancan', '~> 1.6.10'
 gem 'carrierwave'
 gem 'searcher', github: "radar/searcher"
+gem 'rails-observers'
 
 group :test, :development do
   gem 'rspec-rails'
@@ -57,6 +58,7 @@ group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'email_spec'
 
   gem 'capybara-webkit'
   gem 'headless'
