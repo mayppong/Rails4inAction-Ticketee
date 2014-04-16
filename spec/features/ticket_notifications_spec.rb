@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'Ticket Notifications' do
 
   let!( :alice ) { FactoryGirl.create( :user, email: 'alice@example.com' ) }
-  let!( :bob ) { FactoryGirl.create( :user, email: 'bob.example.com' ) }
+  let!( :bob ) { FactoryGirl.create( :user, email: 'bob@example.com' ) }
   let!( :project ) { FactoryGirl.create( :project ) }
   let!( :ticket ) do
     FactoryGirl.create( :ticket,
@@ -36,6 +36,27 @@ feature 'Ticket Notifications' do
     within( "#ticket h2" ) do
       page.should have_content( ticket.title )
     end
+  end
+
+  scenario 'comment authors are automatically subscribed to a ticket' do
+    click_link project.name
+    click_link ticket.title
+    fill_in "comment_text", with: 'Is it out yet?'
+    click_button "Create Comment"
+
+    page.should have_content( 'Comment has been created.' )
+    find_email!( alice.email )
+    click_link 'Sign out'
+ 
+    sign_in_as!( bob )
+    click_link project.name
+    click_link ticket.title
+    fill_in "comment_text", with: 'Not yet!'
+    click_button 'Create Comment'
+
+    page.should have_content( 'Comment has been created.' )
+    find_email!( alice.email )
+    lambda { find_email!( bob.email ) }.should raise_error
   end
 
 end
