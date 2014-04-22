@@ -26,3 +26,7 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+Chapter 13: API
+  The chapter mentioned the use of devise gem. However, we never did set this up in Chapter 6. Instead, the book guided me through the process of creating my own user model and implementing bcrypt gem. And so, I had to remove the token authentication out of the code base to be able to continue on.

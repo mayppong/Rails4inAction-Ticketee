@@ -95,4 +95,13 @@ Ticketee::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+  # API
+  namespace :api do
+    namespace :v1 do
+      resources :projects
+    end
+  end
+
 end
