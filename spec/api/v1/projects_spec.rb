@@ -24,6 +24,13 @@ describe "/api/v1/projects", type: :api do
         p["name"] == project.name
       end.should be_true
     end
+
+    it 'xml' do
+      get "#{url}.xml", token: token
+      response.body.should eql( Project.for(user).to_xml )
+      projects = Nokogiri::XML( response.body )
+      projects.css("project name").text.should eql( project.name )
+    end
   end
 
 end

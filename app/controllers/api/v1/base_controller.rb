@@ -1,6 +1,6 @@
 class Api::V1::BaseController < ActionController::Base
 
-  respond_to :json
+  respond_to :json, :xml
 
   before_filter :authenticate_user_from_token!
   before_filter :authenticate_user
