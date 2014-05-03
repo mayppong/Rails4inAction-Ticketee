@@ -46,6 +46,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'cancan', '~> 1.6.10'
 gem 'carrierwave'
+gem 'devise'
 gem 'searcher', github: "radar/searcher"
 gem 'rails-observers'
 
