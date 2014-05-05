@@ -62,4 +62,24 @@ describe "/api/v1/projects", type: :api do
     end
   end
 
+  context 'show' do
+    let( :url ) { "/api/v1/projects/#{project.id}" }
+
+    before do
+      FactoryGirl.create( :ticket, project: project )
+    end
+
+    it 'JSON' do
+      get "#{url}.json", token: token
+      project_json = project.to_json( :methods => "last_ticket" )
+      response.body.should eql(project_json)
+      response.status.should eql(200)
+     
+      project_response = JSON.parse( response.body )
+
+      ticket_title = project_response["last_ticket"]["title"]
+      ticket_title.should_not be_blank
+    end
+  end
+
 end

@@ -15,4 +15,8 @@ class Project < ActiveRecord::Base
     user.admin? ? Project.all : Project.viewable_by( user )
   end
 
+  def last_ticket
+    tickets.last
+  end
+
 end
