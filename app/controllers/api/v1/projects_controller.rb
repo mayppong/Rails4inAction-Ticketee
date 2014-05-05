@@ -1,6 +1,7 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
 
   before_filter :authorize_admin!, except: [:index, :show]
+  before_filter :find_project, only: [:show]
 
   def index
     respond_with( Project.all )
@@ -26,4 +27,12 @@ class Api::V1::ProjectsController < Api::V1::BaseController
       project = params[:project]
       project.permit( :name, :description ) unless project == nil
     end
+    
+    def find_project
+      @project = Project.for(current_user).find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        error = { error: "The project you were looking for could not be found." }
+        respond_with( error, status: 404 )
+    end
+
 end
