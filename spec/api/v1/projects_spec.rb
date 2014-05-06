@@ -109,4 +109,18 @@ describe "/api/v1/projects", type: :api do
     end
   end
 
+  context 'deleting a project' do
+    let( :url ) { "/api/v1/projects/#{project.id}" }
+
+    before do
+      user.admin = true
+      user.save
+    end
+    
+    it 'JSON' do
+      delete "#{url}.json", token: token
+      response.status. should eql( 204 )
+    end
+  end
+    
 end
