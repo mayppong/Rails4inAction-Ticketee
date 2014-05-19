@@ -1,4 +1,4 @@
-class Api::V1::TicketsController < Api::V1::BaseController
+class Api::V2::TicketsController < Api::V2::BaseController
 
   before_filter :find_project
 
