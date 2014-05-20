@@ -4,9 +4,9 @@ class ProjectsController < ApplicationController
   before_action :require_signin!, only: [:index, :show]
   before_action :set_project, 
     only: [ :show, :edit, :update, :destroy ]
-  caches_action :show, cache_path: ( proc do 
-    project_path( params[:id] ) + "/#{current_user.id}/#{params[:page] || 1 }" )
-  end )
+#  caches_action :show, cache_path: ( proc do 
+#    project_path( params[:id] ) + "/#{current_user.id}/#{params[:page] || 1 }" )
+#  end )
   cache_sweeper :tickets_sweeper, only: [:create, :update, :destroy]
 
   def index
