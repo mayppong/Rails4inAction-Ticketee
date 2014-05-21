@@ -6,6 +6,11 @@ class TicketsController < ApplicationController
   before_action :authorize_update!, only: [:edit, :update]
   before_action :authorize_delete!, only: :destroy
 
+#  caches_action :show, cache_path: ( proc do 
+#    project_path( params[:id] ) + "/#{current_user.id}/#{params[:page] || 1 }" )
+#  end )
+  cache_sweeper :tickets_sweeper, only: [:create, :update, :destroy]
+
   def new
     @ticket = @project.tickets.build
     @ticket.assets.build
@@ -28,7 +33,7 @@ class TicketsController < ApplicationController
   def show
     @comment = @ticket.comments.build
     @states = State.all
-    fresh_when last_modified: @ticket.update_at, 
+    fresh_when last_modified: @ticket.updated_at, 
       etag: @ticket.to_s + current_user.id.to_s
   end
 
