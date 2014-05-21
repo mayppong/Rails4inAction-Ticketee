@@ -28,8 +28,7 @@ class TicketsController < ApplicationController
   def show
     @comment = @ticket.comments.build
     @states = State.all
-    fresh_when 
-      last_modified: @ticket.update_at, 
+    fresh_when last_modified: @ticket.update_at, 
       etag: @ticket.to_s + current_user.id.to_s
   end
 

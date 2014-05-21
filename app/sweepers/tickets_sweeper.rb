@@ -1,4 +1,4 @@
-class TicketsSweeper > ActionController::Caching::Sweeper
+class TicketsSweeper < ActionController::Caching::Sweeper
 
   observe Ticket
 
