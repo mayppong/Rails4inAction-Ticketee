@@ -46,6 +46,8 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'cancan', '~> 1.6.10'
 gem 'carrierwave'
+# gem 'delayed_job'
+gem 'delayed_job_active_record'
 gem 'devise'
 gem 'kaminari'
 gem 'searcher', github: "radar/searcher"
